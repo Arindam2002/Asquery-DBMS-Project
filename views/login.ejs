@@ -1,0 +1,73 @@
+<%- include("partials/header") %>
+
+<div class="container mt-5 text-center">
+  <h1 class="asquery-heading mb-3">Asquery</h1>
+  <hr class="hr-login">
+
+    <!-- LOGIN CARD ---------------------------------------------->
+    <div class="mb-5 loginDiv">
+      <div class="card">
+        <div class="card-body primary">
+          <h1 class="card-title-login mb-3">Log In</h1>
+          <form action="/auth/login" method="POST">
+
+            <div class="row">
+              <div class="form-floating mb-4">
+                <input type="email" class="form-control" name="email" placeholder="Email" required autofocus>
+                <label>Email</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-floating mb-4">
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                <label>Password</label>
+                <div class="invalid-feedback">
+                  Please provide a password.
+                </div>
+              </div>
+            </div>
+
+            <div class="button">
+              <button class="btn btn-primary login-btn mb-2" type="submit" name="login">Log In</button>
+            </div>
+
+          </form>
+
+          <div class="caption mt-2">
+            <p>New User? <span><a class="caption" href="/signup">Sign Up</a></span></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- ---------------------------------------------------------->
+
+    <!-- SIGN IN USING GOOGLE AND LINKEDIN ------------------------>
+    <!-- <div class="auth_parent col-sm-4 mb-5">
+
+      <div class="card auth_google mb-3">
+        <div class="card-body cardBody_auth">
+          <a class="btn btn-block container-fluid btn_auth" href="/auth/google" role="button">
+            <i class="fab fa-google fa-lg"></i>
+            Sign In with Google
+          </a>
+        </div>
+      </div>
+
+      <div class="card auth_linkedin">
+        <div class="card-body cardBody_auth">
+          <a class="btn btn-block container-fluid btn_auth" href="/auth/linkedin" role="button">
+            <i class="fab fa-linkedin fa-lg"></i>
+            Sign In with LinkedIn
+          </a>
+        </div>
+      </div>
+
+    </div> -->
+    <!-- ---------------------------------------------------------->
+
+  <!-- </div> -->
+</div>
+
+<%- include("partials/footer") %>

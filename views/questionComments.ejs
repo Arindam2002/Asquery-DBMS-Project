@@ -1,0 +1,111 @@
+<%- include("partials/header") %>
+<div class="row">
+
+  <!-- NAVBAR ------------------------------------------------------------->
+
+  <div class="col-sm-2 sidebar">
+    <a href="/posts"><img src="Asquery.png" class="logo" alt="logo"></a>
+    <div class="parent-nav-div">
+      <div class="navLink_div">
+        <a href="/profile" class="profile_nav" data-toggle="tooltip" data-placement="right" title="Profile"><span class="material-icons-outlined nav-btn">account_circle</span></a>
+        <a href="/posts" class="posts_nav" data-toggle="tooltip" data-placement="right" title="Feed"><span class="material-icons-outlined nav-btn vertical">home</span></a>
+        <a href="/myPosts" class="myPosts_nav" data-toggle="tooltip" data-placement="right" title="My Posts"><span class="material-icons-outlined nav-btn">book</span></a>
+      </div>
+    </div>
+    <a href="/auth/logout" class="logout-btn" data-toggle="tooltip" data-placement="right" title="Logout"><span class="material-icons-outlined nav-btn">logout</span></a>
+  </div>
+
+  <!-- -------------------------------------------------------------------->
+  <div class="container mt-5 col-md-10">
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <% questionPost[0].forEach((Question) => { %>
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title"> <%= Question.question %> </h2>
+            <hr class="text-muted">
+
+
+            <div class="row">
+              <% questionPost[1].forEach((User) => { %>
+              <div class="postedByDiv col-sm-8">
+                <p class="card-subtitle">Posted by <span class="postedBy"> <%= User.fName %> <%= User.lName %> </span></p>
+              </div>
+              <% })%>
+
+              <div class="reply col-sm-4">
+                <a class="card-subtitle container-fluid" href="#" role="btn" data-bs-toggle="modal" data-bs-target="#replyModal">
+                  <div class="replyDiv icon">
+                    <i class="replyIcon far fa-comment-alt fa-xs ml-5"></i>
+                  </div>
+                  <div class="replyDiv">
+                    <span class="replyLink">Reply</span>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <% })%>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header">
+            Comments
+          </div>
+          <div class="card-body comment-cardBody-out">
+            <% questionPost[2].forEach((Reply) => { %>
+              <div class="card comment-card">
+                <div class="card-body comment-cardBody-in">
+                  <h1 class="card-title commentBy"> <%= Reply.fName %> <%= Reply.lName %> </h1>
+                  <p class="card-text commentText text-muted"> <%= Reply.question_reply %> </p>
+                </div>
+              </div>
+            <% })%>
+
+          </div>
+          <div class="card-footer text-muted text-center">
+            Copyright © 2021 Asquery
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- POP-UP SCREEN FOR REPLY--------------------------------------------------------->
+<div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby=replyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="replyModalLabel">Post a comment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <% questionPost[0].forEach((Question) => { %>
+        <form action="/questionReply/<%= Question.question_id %>" method="POST">
+          <div class="mb-3">
+            <label class="col-form-label">Comment:</label>
+            <textarea class="form-control" name="reply" required autofocus></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary post-btn">Post</button>
+          </div>
+        </form>
+        <% })%>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- -------------------------------------------------------------------------------->
+
+
+<%- include("partials/footer") %>

@@ -1,0 +1,86 @@
+<%- include("partials/header") %>
+  <div class="container mt-5 text-center">
+    <h1 class="asquery-heading mb-3">Asquery</h1>
+    <hr class="hr-login">
+    <!-- <div class="row"> -->
+
+      <div class="mb-5 signupDiv">
+        <div class="card">
+          <div class="card-body primary">
+            <h1 class="card-title-login mb-3">Sign Up</h1>
+            <form action="/auth/signup" method="POST">
+            <div class="row">
+              <div class="form-floating col-md-6 mb-4">
+                <input type="text" class="form-control" name="fName" placeholder="First Name" required autofocus>
+                <label>First Name</label>
+              </div>
+              <div class="form-floating col-md-6 mb-4">
+                <input type="text" class="form-control" name="lName" placeholder="Last Name" required>
+                <label>Last Name</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-floating col-md-6 mb-4">
+                <input type="tel" class="form-control" name="contactNumber" placeholder="Contact Number">
+                <label>Contact Number</label>
+              </div>
+              <div class="form-floating col-md-6 mb-4">
+                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                <label>Email</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-floating col-md-6 mb-4">
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                <label>Password</label>
+                <div class="invalid-feedback">
+                  Please provide a password.
+                </div>
+              </div>
+              <div class="form-floating col-md-6 mb-4">
+                <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
+                <label>Confirm Password</label>
+              </div>
+            </div>
+
+            <div class="button">
+              <button class="btn btn-primary signup-btn mb-2" type="submit" name="createAccount">Create Account</button>
+            </div>
+
+            </form>
+
+            <div class="caption mt-2">
+              <p>Already have an account? <span><a class="caption" href="/login">Log In</a></span></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="auth_parent col-sm-4 mb-5">
+
+        <div class="card auth_google mb-3">
+          <div class="card-body">
+            <a class="btn btn-block container-fluid" href="/auth/google" role="button">
+              <i class="fab fa-google fa-lg"></i>
+              Sign Up with Google
+            </a>
+          </div>
+        </div>
+
+        <div class="card auth_linkedin">
+          <div class="card-body">
+            <a class="btn btn-block container-fluid" href="/auth/linkedin" role="button">
+              <i class="fab fa-linkedin fa-lg"></i>
+              Sign Up with LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+
+<%- include("partials/footer") %>

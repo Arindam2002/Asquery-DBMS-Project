@@ -1,0 +1,73 @@
+<%- include("partials/header") %>
+<div class="row">
+
+  <!-- NAVBAR ------------------------------------------------------------->
+
+  <div class="col-sm-2 sidebar">
+    <a href="/posts"><img src="Asquery.png" class="logo" alt="logo"></a>
+    <div class="parent-nav-div">
+      <div class="navLink_div">
+        <a href="/profile" class="profile_nav" data-toggle="tooltip" data-placement="right" title="Profile"><span class="material-icons-outlined nav-btn">account_circle</span></a>
+        <a href="/posts" class="posts_nav" data-toggle="tooltip" data-placement="right" title="Feed"><span class="material-icons-outlined nav-btn vertical">home</span></a>
+        <a href="/myPosts" class="myPosts_nav" data-toggle="tooltip" data-placement="right" title="My Posts"><span class="material-icons-outlined nav-btn">book</span></a>
+      </div>
+    </div>
+    <a href="/auth/logout" class="logout-btn" data-toggle="tooltip" data-placement="right" title="Logout"><span class="material-icons-outlined nav-btn">logout</span></a>
+  </div>
+
+  <!-- -------------------------------------------------------------------->
+  <div class="container mt-5 col-md-10">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="avatar-ctn">
+            <img src="/avatar.png" class="avatar" alt="user profile">
+          </div>
+          <div class="card-body">
+            <h2 class="card-title"><%= user.fName %> <%= user.lName %> </h2>
+
+            <table>
+              <tr>
+                <td><h4 class="card-text mt-3"><strong>Contact</strong></h4></td>
+                <td><p class=" card-text mt-3">: <%= user.contactNumber %></p></td>
+              </tr>
+              <tr>
+                <td><h4 class="card-text mt-3"><strong>Email</strong></h4></td>
+                <td><p class="card-text mt-3">: <%= user.email %></p></td>
+              </tr>
+            </table>
+
+            <a href="/auth/logout" class="btn btn-primary post-btn mt-3">Sign Out</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-8">
+        <div class="card text-center">
+          <div class="card-header">
+            Profile Page
+          </div>
+          <div class="card-body">
+            <h2 class="card-title">Hey <%= user.fName %>, Welcome Back!</h2>
+            <p class="card-text">Ask the things you're wondering about to the community,
+              write blogs on topics that interests you and share your thoughts with
+              your peers!
+            </p>
+            <a href="/posts" class="btn btn-primary post-btn profile-btn-myFeed mt-2">My Feed</a>
+            <a href="/myPosts" class="btn btn-primary post-btn profile-btn-myPosts mt-2">My Posts</a>
+          </div>
+          <div class="card-footer text-muted">
+            Copyright © 2021 Asquery
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+<%- include("partials/footer") %>

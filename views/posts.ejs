@@ -1,0 +1,171 @@
+<%- include("partials/header") %>
+
+<div class="container-fluid">
+
+  <!-- NAVBAR ------------------------------------------------------------->
+  <div class="col-sm-2 sidebar">
+    <a href="/posts"><img src="Asquery.png" class="logo" alt="logo"></a>
+    <div class="parent-nav-div">
+      <div class="navLink_div">
+        <a href="/profile" class="profile_nav" data-toggle="tooltip" data-placement="right" title="Profile"><span class="material-icons-outlined nav-btn">account_circle</span></a>
+        <a href="/posts" class="posts_nav" data-toggle="tooltip" data-placement="right" title="Feed"><span class="material-icons-outlined nav-btn vertical">home</span></a>
+        <a href="/myPosts" class="myPosts_nav" data-toggle="tooltip" data-placement="right" title="My Posts"><span class="material-icons-outlined nav-btn">book</span></a>
+      </div>
+    </div>
+    <a href="/auth/logout" class="logout-btn" data-toggle="tooltip" data-placement="right" title="Logout"><span class="material-icons-outlined nav-btn">logout</span></a>
+  </div>
+  <!-- -------------------------------------------------------------------->
+
+  <div class="row">
+
+    <div class="col-sm-8 posts_ParentDiv">
+      <div class="container-fluid posts_div">
+
+        <div class="heading">
+          <h1 class="yourFeed">YOUR <span class="feedSpan">FEED</span></h1>
+        </div>
+
+        <div class="row">
+
+          <!-- QUESTIONS COLUMN -->
+          <div class="col-md-6">
+            <% blogs[1].forEach((Question) => { %>
+            <div class="card">
+              <div class="card-body">
+                <h2 class="card-title"> <%= Question.question %> </h2>
+                <hr class="text-muted">
+                <div class="row">
+                  <div class="postedByDiv col-sm-8">
+                    <p class="card-subtitle">Posted by <span class="postedBy"> <%= Question.fName %> <%=  Question.lName %> </span></p>
+                  </div>
+                  <div class="reply col-sm-4">
+                    <a class="card-subtitle container-fluid commentIcon" href="/questionComments/<%= Question.question_id %>/<%= Question.id %>">
+                      <div class="replyDiv icon">
+                        <i class="replyIcon far fa-comment-alt fa-xs ml-5"></i>
+                      </div>
+                      <div class="replyDiv">
+                        <span class="replyLink">Comments</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+          <!-- ------------------->
+
+          <!-- BLOGS COLUMN ------>
+          <div class="col-md-6">
+            <% blogs[0].forEach((Blog) => { %>
+            <div class="card">
+              <div class="card-body">
+                <h2 class="card-title"> <%= Blog.blogTitle %> </h2>
+                <p class="card-text text-muted"> <%= Blog.blogContent %> </p>
+                <hr class="text-muted">
+                <div class="row">
+                  <div class="postedByDiv col-sm-8">
+                    <p class="card-subtitle">Posted by <span class="postedBy"> <%= Blog.fName %> <%= Blog.lName %> </span></p>
+                  </div>
+                  <div class="reply col-sm-4">
+                    <a class="card-subtitle container-fluid commentIcon" href="/blogComments/<%= Blog.blog_id %>/<%= Blog.id %>">
+                      <div class="replyDiv icon">
+                        <i class="replyIcon far fa-comment-alt fa-xs ml-5"></i>
+                      </div>
+                      <div class="replyDiv">
+                        <span class="replyLink">Comments</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% })%>
+          </div>
+          <!-- ------------------->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- FLOATING ACTION BUTTONS----->
+    <div class="col-sm-2 actionButtons_parentDiv">
+      <div class="container-fluid blahhhhhhh">
+        <div class="blogPost mb-1">
+          <button class="btn btn-primary actionButtons" type="button" name="button" data-bs-toggle="modal" data-bs-target="#blogModal">
+            <i class="fas fa-plus plusIcon mr-2"></i>
+            Blog Post
+          </button>
+        </div>
+        <div class="question mt-2">
+          <button class="btn btn-primary actionButtons" type="button" name="button" data-bs-toggle="modal" data-bs-target="#questonModal">
+            <i class="fas fa-plus plusIcon mr-2"></i>
+            Question
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- ---------------------------->
+
+  </div>
+
+</div>
+
+<!-- POP-UP SCREEN FOR BLOGS--------------------------------------------------------->
+<div class="modal fade" id="blogModal" tabindex="-1" aria-labelledby="blogModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="blogModalLabel">New Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/postBlog" method="POST">
+          <div class="mb-3">
+            <label class="col-form-label">Title:</label>
+            <input type="text" class="form-control" name="blogTitle" required autofocus>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Content:</label>
+            <textarea class="form-control" name="blogContent" required></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary post-btn">Post</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- -------------------------------------------------------------------------------->
+
+<!-- POP-UP SCREEN FOR QUESTION------------------------------------------------------>
+<div class="modal fade" id="questonModal" tabindex="-1" aria-labelledby=questonModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="questonModalLabel">Ask a question</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/postQuestion" method="POST">
+          <div class="mb-3">
+            <label class="col-form-label">Question:</label>
+            <textarea class="form-control" name="question" required autofocus></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary post-btn">Post</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- -------------------------------------------------------------------------------->
+
+
+<%- include("partials/footer") %>
