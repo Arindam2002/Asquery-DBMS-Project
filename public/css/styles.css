@@ -141,7 +141,11 @@ main {
 }
 
 .navLink_div {
-  margin-top: 16vh;
+  margin-top: 18vh;
+}
+
+.navLink_div_comment {
+  margin-top: 30.5vh;
 }
 
 /* NAVBAR-------------------------------------------------------------------- */
